@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  pgadminmovies:
+    container_name: pgadmin4_movies
+    build:
+      context: .
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - .:/usr/src/pgadmin
+    ports:
+      - "5051:80"
+    networks:
+      - postgres_flask   
+networks:
+  postgres_flask:
+    name: postgres_flask
+    driver: bridge
+volumes:
+  pgadmin:
+  
